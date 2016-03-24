@@ -1,10 +1,13 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use App\Queries\Photo\Store;
+use App\Http\Requests\PhotoRequest;
+use Illuminate\Support\Facades\Redirect;
+
 
 class PhotosController extends Controller
 {
@@ -22,9 +25,12 @@ class PhotosController extends Controller
     }
 
 
-    public function store()
+    public function store(PhotoRequest $request)
     {
-        dd('ka4i');
+        $inputs = $request->except('_token');
+        (new Store($inputs))->run();
+
+//        return Redirect::route('photos.index');
     }
 
 

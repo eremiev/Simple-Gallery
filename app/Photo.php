@@ -15,13 +15,18 @@ class Photo extends Model
 
 
     /**
-     *  Get translation
+     *
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function translation()
     {
         return $this->hasOne(PhotoTranslation::class)->where('lang', app()->getLocale());
+    }
+
+    public function translations()
+    {
+        return $this->hasMany(PhotoTranslation::class);
     }
 
     /**
