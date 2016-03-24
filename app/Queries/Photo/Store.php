@@ -41,11 +41,11 @@ class Store
 
     private function savePhoto($photo, $file)
     {
-//        $fileName = str_replace(' ', '-', $file->getClientOriginalName());
-//        $file->move(public_path() . '/photos/', $fileName);
-//        $photo->images()->create([
-//            'path' => $fileName,
-//            'type' => 'big'
-//        ]);
+        $fileName = str_replace(' ', '-', $file->getClientOriginalName());
+        $file->move(public_path() . '/photos/', $fileName);
+        $photo->images()->create([
+            'path' => $fileName,
+            'type' => 'big'
+        ]);
     }
 }
