@@ -17,7 +17,7 @@ Route::group(['middleware' => ['web']], function () {
         return view('welcome');
     });
 
-    Route::resource('images', 'PhotoController', [
+    Route::resource('photos', 'PhotosController', [
         'only' => ['index', 'create', 'store', 'show', 'destroy']
     ]);
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateImageTranslationsTable extends Migration
+class CreatePhotoTranslationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,18 +12,19 @@ class CreateImageTranslationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('image_translations', function (Blueprint $table) {
+        Schema::create('photo_translations', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('image_id');
+            $table->unsignedInteger('photo_id');
+            $table->string('lang', 4);
             $table->string('name', 150);
             $table->text('description');
             $table->timestamps();
 
-            $table->index(['image_id']);
+            $table->index(['photo_id']);
 
-            $table->foreign('image_id')
+            $table->foreign('photo_id')
                 ->references('id')
-                ->on('images')
+                ->on('photos')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });
@@ -36,13 +37,13 @@ class CreateImageTranslationsTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('image_translations')) {
+        if (Schema::hasTable('photo_translations')) {
 
-            Schema::table('image_translations', function (Blueprint $table) {
-                $table->dropForeign('image_translations_image_id_foreign');
+            Schema::table('photo_translations', function (Blueprint $table) {
+                $table->dropForeign('photo_translations_photo_id_foreign');
             });
 
-            Schema::drop('image_translations');
+            Schema::drop('photo_translations');
         }
     }
 }
